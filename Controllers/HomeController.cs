@@ -19,8 +19,15 @@ namespace EnqueteWeb.Controllers
         [HttpPost]
         public IActionResult Responder(Resposta resposta)
         {
-            Repositorio.AdicionarRespota(resposta);
-            return View("Obrigado");
+            if(ModelState.IsValid)
+            {
+                Repositorio.AdicionarRespota(resposta);
+                return View("Obrigado");
+            }
+            else
+            {
+                return View(resposta);
+            }
         }
 
         public IActionResult Resultado()
